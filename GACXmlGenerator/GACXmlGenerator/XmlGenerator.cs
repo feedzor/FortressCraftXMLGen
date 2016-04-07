@@ -13,6 +13,7 @@ namespace GACXmlGenerator
 {
     public partial class XmlGenerator : Form
     {
+        Boolean isFCEDataFolderValid = false;
         Boolean isGlobalSectionDataValid;
         FilesLocations filesLocations;
         ModConfiguration modConfiguration;
@@ -91,6 +92,29 @@ namespace GACXmlGenerator
             updateItemsTabBindings();
         }
 
+        public void loadFCEdataFolder(String fceDataFolderDirectory)
+        {
+            if (Directory.Exists(fceDataFolderDirectory))
+            {
+                FCEFolderLocation = @"C:\Program Files (x86)\Steam\steamapps\common\FortressCraft\64\Default";
+                if (researchManager.loadResearch(Path.Combine(FCEFolderLocation, "Data", "Research.xml")))
+                {
+                    isFCEDataFolderValid = true;
+                }
+                else
+                {
+                    isFCEDataFolderValid = false;
+                    DisplayValidationStatus(FCEFolderLocationStatus, new ValidationInfo(ValidationInfo.StatusEnum.Error, "Invalid FCE data folder location\n." +
+                        " The folder should looks something like: \"C:\\Program Files (x86)\\Steam\\steamapps\\common\\FortressCraft\\64\\Default \".\n Research.xml"));
+                }
+            }
+        }
+
+        private void UpdateTabsAccess()
+        {
+            
+        }
+
         private void modLocationTxt_Click(object sender, EventArgs e)
         {
             projectPathSelector.SelectedPath = modConfiguration.Location;
@@ -128,6 +152,7 @@ namespace GACXmlGenerator
             DisplayValidationStatus(modIDStatus, infosByName["ID"]);
             DisplayValidationStatus(modNameStatus, infosByName["Name"]);
             DisplayValidationStatus(modVersionStatus, infosByName["Version"]);
+            
         }
 
         public void DisplayValidationStatus(Label label, ValidationInfo info)
@@ -157,7 +182,7 @@ namespace GACXmlGenerator
         {
             ValidateModProperties();
 
-            if (isGlobalSectionDataValid)
+            if (isGlobalSectionDataValid && isFCEDataFolderValid)
             {
                 String serializedProperties = XMLSerializer.Serialize<ModConfiguration>(modConfiguration,false);
                 Directory.CreateDirectory(filesLocations.VersionedRootPath);
@@ -200,6 +225,11 @@ namespace GACXmlGenerator
             projectPathSelector.ShowDialog();
             FCEFolderLocation = projectPathSelector.SelectedPath;
             modLocationTxt.Text = FCEFolderLocation;
+        }
+
+        private void modFCEDataLocation_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

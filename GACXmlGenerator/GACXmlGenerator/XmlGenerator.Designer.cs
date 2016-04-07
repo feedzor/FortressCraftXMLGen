@@ -38,6 +38,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XmlGenerator));
             this.configurationTab = new System.Windows.Forms.TabControl();
             this.globalTabPage = new System.Windows.Forms.TabPage();
+            this.FCEFolderLocationStatus = new System.Windows.Forms.Label();
+            this.modFCEDataLocation = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.modIsServerOnlyChk = new System.Windows.Forms.CheckBox();
             this.modIsLocalChk = new System.Windows.Forms.CheckBox();
             this.modAuthorLbl = new System.Windows.Forms.Label();
@@ -85,9 +88,6 @@
             this.toolTips = new System.Windows.Forms.ToolTip(this.components);
             this.btnLoad = new System.Windows.Forms.Button();
             this.generateXMLBtn = new System.Windows.Forms.Button();
-            this.modFCEDataLocation = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.FCEFolderLocationStatus = new System.Windows.Forms.Label();
             addItemBtn = new System.Windows.Forms.Button();
             deleteItemBtn = new System.Windows.Forms.Button();
             itemRRAddBtn = new System.Windows.Forms.Button();
@@ -199,6 +199,35 @@
             this.globalTabPage.Text = "Global";
             this.globalTabPage.UseVisualStyleBackColor = true;
             // 
+            // FCEFolderLocationStatus
+            // 
+            this.FCEFolderLocationStatus.AutoSize = true;
+            this.FCEFolderLocationStatus.Location = new System.Drawing.Point(323, 22);
+            this.FCEFolderLocationStatus.Name = "FCEFolderLocationStatus";
+            this.FCEFolderLocationStatus.Size = new System.Drawing.Size(0, 13);
+            this.FCEFolderLocationStatus.TabIndex = 18;
+            // 
+            // modFCEDataLocation
+            // 
+            this.modFCEDataLocation.Location = new System.Drawing.Point(104, 19);
+            this.modFCEDataLocation.Name = "modFCEDataLocation";
+            this.modFCEDataLocation.Size = new System.Drawing.Size(201, 20);
+            this.modFCEDataLocation.TabIndex = 17;
+            this.toolTips.SetToolTip(this.modFCEDataLocation, "\"Location of FCE installation. Only need to supply if it is empty, or you want to" +
+        " use a custom location.\"");
+            this.modFCEDataLocation.Click += new System.EventHandler(this.modFCEDataLocation_Click);
+            this.modFCEDataLocation.TextChanged += new System.EventHandler(this.modFCEDataLocation_TextChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 19);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(85, 13);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "FCE Data Folder";
+            this.toolTips.SetToolTip(this.label17, "Your Mod Files will be generated under this directory");
+            // 
             // modIsServerOnlyChk
             // 
             this.modIsServerOnlyChk.AutoSize = true;
@@ -241,9 +270,8 @@
             this.modVersionStatus.AutoSize = true;
             this.modVersionStatus.Location = new System.Drawing.Point(323, 148);
             this.modVersionStatus.Name = "modVersionStatus";
-            this.modVersionStatus.Size = new System.Drawing.Size(22, 13);
+            this.modVersionStatus.Size = new System.Drawing.Size(0, 13);
             this.modVersionStatus.TabIndex = 11;
-            this.modVersionStatus.Text = "";
             // 
             // modVersionTxt
             // 
@@ -271,9 +299,8 @@
             this.modIDStatus.AutoSize = true;
             this.modIDStatus.Location = new System.Drawing.Point(323, 74);
             this.modIDStatus.Name = "modIDStatus";
-            this.modIDStatus.Size = new System.Drawing.Size(22, 13);
+            this.modIDStatus.Size = new System.Drawing.Size(0, 13);
             this.modIDStatus.TabIndex = 8;
-            this.modIDStatus.Text = "";
             // 
             // modIDTxt
             // 
@@ -300,18 +327,16 @@
             this.modNameStatus.AutoSize = true;
             this.modNameStatus.Location = new System.Drawing.Point(323, 122);
             this.modNameStatus.Name = "modNameStatus";
-            this.modNameStatus.Size = new System.Drawing.Size(22, 13);
+            this.modNameStatus.Size = new System.Drawing.Size(0, 13);
             this.modNameStatus.TabIndex = 5;
-            this.modNameStatus.Text = "";
             // 
             // modLocationStatus
             // 
             this.modLocationStatus.AutoSize = true;
             this.modLocationStatus.Location = new System.Drawing.Point(323, 48);
             this.modLocationStatus.Name = "modLocationStatus";
-            this.modLocationStatus.Size = new System.Drawing.Size(22, 13);
+            this.modLocationStatus.Size = new System.Drawing.Size(0, 13);
             this.modLocationStatus.TabIndex = 4;
-            this.modLocationStatus.Text = "";
             // 
             // modLocationTxt
             // 
@@ -649,35 +674,6 @@
             this.generateXMLBtn.Text = "Generate";
             this.generateXMLBtn.UseVisualStyleBackColor = true;
             this.generateXMLBtn.Click += new System.EventHandler(this.generateXMLBtn_Click);
-            // 
-            // modFCEDataLocation
-            // 
-            this.modFCEDataLocation.Location = new System.Drawing.Point(104, 19);
-            this.modFCEDataLocation.Name = "modFCEDataLocation";
-            this.modFCEDataLocation.Size = new System.Drawing.Size(201, 20);
-            this.modFCEDataLocation.TabIndex = 17;
-            this.toolTips.SetToolTip(this.modFCEDataLocation, "\"Location of FCE installation. Only need to supply if it is empty, or you want to" +
-        " use a custom location.\"");
-            this.modFCEDataLocation.Click += new System.EventHandler(this.modFCEDataLocation_Click);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 19);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(85, 13);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "FCE Data Folder";
-            this.toolTips.SetToolTip(this.label17, "Your Mod Files will be generated under this directory");
-            // 
-            // FCEFolderLocationStatus
-            // 
-            this.FCEFolderLocationStatus.AutoSize = true;
-            this.FCEFolderLocationStatus.Location = new System.Drawing.Point(323, 22);
-            this.FCEFolderLocationStatus.Name = "FCEFolderLocationStatus";
-            this.FCEFolderLocationStatus.Size = new System.Drawing.Size(22, 13);
-            this.FCEFolderLocationStatus.TabIndex = 18;
-            this.FCEFolderLocationStatus.Text = "";
             // 
             // XmlGenerator
             // 

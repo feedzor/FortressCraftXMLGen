@@ -9,7 +9,7 @@ namespace GACXmlGenerator
 {
     public class ResearchManager
     {
-        public List<ResearchDataEntry> dataEntries;
+        public List<ResearchDataEntry> DataEntries { get; set; }
         private String researchDataPath;
         public bool IsOriginalResearchLoaded { get; set; }
 
@@ -20,21 +20,20 @@ namespace GACXmlGenerator
  
         public bool loadResearch(String originalResearchFilePath)
         {
-            dataEntries = XMLSerializer.Deserialize<List<ResearchDataEntry>>(File.ReadAllText(originalResearchFilePath));
-            if (dataEntries != null)
+            try
             {
+                DataEntries = XMLSerializer.Deserialize<List<ResearchDataEntry>>(File.ReadAllText(originalResearchFilePath));
                 researchDataPath = originalResearchFilePath;
                 IsOriginalResearchLoaded = true;
                 return IsOriginalResearchLoaded;
+                
             }
-            else
+            catch (Exception e)
             {
                 researchDataPath = null;
                 IsOriginalResearchLoaded = false;
                 return IsOriginalResearchLoaded;
             }
-
-
         }
     }
 }
